@@ -1,5 +1,5 @@
-# study-easyReader-onlineBookstore
-from a easy reader webApp to online bookstore site
+# Summary* [前言](README.md)
+
 ## study notes
 
 ----
