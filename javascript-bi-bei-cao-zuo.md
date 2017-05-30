@@ -100,8 +100,35 @@ repeat(2, 'ccc', 5); // 连续弹出4个对话框
 
 ```js
 function repeat(times, rant){
-    if (unde)
+    if (undefined === rant){
+        rant = 'IE6 must die!'
+    }
+    while(--times >= 0){
+        alert(rant);
+    }
 }
+repeat(3); // 连续弹出三个对话框
+repeat(3, 'so should IE7...'); // 连续弹出三个IE7相关的对话框
+```
+
+用字面量对象实现伪命名参数
+
+```js
+function repeat(options){
+	options = options || {};
+	for(var opt in {repeat.defaultOptions || {}}){
+		if(!opt in options){
+			options[opt] = repeat.defaultOptions[opt];
+		}
+	}
+	for(var index=0; index<options.times; ++index){
+		alert(options.rant);
+	}
+}
+repeat.defaultOptions = {times:2, rant:'IE6 must die!!'};
+repeat(); // 弹出2个与IE6有关的对话框
+repeat(3); // 弹出3个与IE6有关的对话框
+repeat(times:2, rant:'FLASH must die!!'); // 弹出2个与flash有关的对话框
 ```
 
 
