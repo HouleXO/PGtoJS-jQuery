@@ -51,17 +51,50 @@ alert(notSoPrivate); // => 23 (变量被泄露在外部)
 var obj = (function(){
     var privateField = 22;
     var publicField = 'fooabr';
-    function processInternals() {
-        notSoPrivate = 23;
-        return notSoPrivate;
+    function processInternals() {  alert( 'Internal stuff : ' + privateField); }
+    function run (){
+       processInternals();
+       alert('still private stuff: ' + privateField); 
+       alert('public stuff: ' + publicField); 
     }
-    alert(privateField); // => 22
-    innerFunc();
-    alert(notSoPrivate); // => 23
+    // 暴露私有属性和方法
+    return {
+        publicField : publicField,
+        run : run
+    };
 })();
-alert(typeof privateField); // => Undefined
-alert(notSoPrivate); // => 23 (变量被泄露在外部)
+obj.run(); // 弹出三个对话框
+obj.publicField; // 'fooabr'
+// 变量未被泄露在外部
+obj.processInternals; // Undefined
+obj.privateField; // Undefined
 ```
 
+**使用可选/可变/命名参数**
 
+声明参数（命名参数）
+
+```js
+function repeat(rant, times){
+    while (--times >= 0){
+        alert(rant);
+    }
+}
+repeat('I am hungery!!', 5); // 弹出5个对话框
+```
+
+动态获取不定数量的参数
+
+```js
+function repeat(times){
+    while (--times >= 0){
+        for(var index=1, len = arguments.length; index < len; ++index){
+            alert(arguments[index]);
+        }
+    }
+}
+repeat(2, 'ccc', 5); // 连续弹出4个对话框
+```
+
+用z
 
