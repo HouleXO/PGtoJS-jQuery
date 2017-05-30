@@ -98,5 +98,11 @@ repeat(2, 'ccc', 5); // 连续弹出4个对话框
 
 为可选参数设置默认值
 
+```js
+function repeat(times, rant){
+    if (unde)
+}
+```
+
 
 
