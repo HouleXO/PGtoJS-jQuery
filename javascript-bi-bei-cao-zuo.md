@@ -22,5 +22,9 @@ element[isIE ? 'simpleEffect' : 'complexEffect']();
 element[(enable ? 'add' : 'remove') + 'ClassName']('enabled');
 ```
 
+### 通过模块模式实现访问控制
+
+
+
 
 
