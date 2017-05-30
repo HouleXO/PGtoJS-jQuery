@@ -96,5 +96,5 @@ function repeat(times){
 repeat(2, 'ccc', 5); // 连续弹出4个对话框
 ```
 
-用z
+
 
