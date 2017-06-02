@@ -1,6 +1,6 @@
 ### 获取DOM元素的引用
 
-  元素引用需要先指定上下文节点或根节点，然后以这个节点作为根元素，在其之上进行选择操作。尽可能缩小上下文范围，以争取更快的执行速度和更小的内存占用。
+元素引用需要先指定上下文节点或根节点，然后以这个节点作为根元素，在其之上进行选择操作。尽可能缩小上下文范围，以争取更快的执行速度和更小的内存占用。
 
 **通过ID属性获取对应元素**
 
@@ -78,7 +78,13 @@ $(elementOrSelect).bind('event', handlerFx);
 **在多个元素上监听事件**
 
 ```js
-$(elements).bind('event', handlerFx);
+$(elements).bind('event', handlerFx)；
+```
+
+**绑定多个事件**
+
+```js
+$( "#foo" ).bind( "mouseenter mouseleave", handlerFx);
 ```
 
 **停止监听**
@@ -87,18 +93,55 @@ $(elements).bind('event', handlerFx);
 $(elementOrSelect).unbind('event', handlerFx);
 ```
 
-### 利用事件委托-优先使用时间代理
+### 利用事件委托
+
+  优先使用时间代理，jQuery模拟了所有的事件冒泡，使所有事件到支持事件冒泡并兼容所有浏览器。
 
 **切换条目内容**
 
+```html
+<ul id="items">
+    <li>
+        <div>
+            <p>Data 1</p>
+            <p>Data 2</p>
+        </div>
+    </li>
+    <li>
+        <div>
+            <p>Data 1</p>
+            <p>Data 2</p>
+        </div>
+    </li>
+    <li>
+        <div>
+            <p>Data 1</p>
+            <p>Data 2</p>
+        </div>
+    </li>
+</ul>
 ```
-
-```
-
-**使用时间代理**
 
 ```js
-$('a.toggler', '#items').live('click', handlerFx);
+$('#items').on('click', 'a', function(){
+        var trigger = $(this);
+        if(!trigger){ return true; }
+        var content = trigger.parent().next();
+        if(!content){ return true; }
+        content.toggle();
+        trigger.html(content.css("display") === "none" ? 'Open' : 'Close');
+});
+ $('ul li').each(function(){
+        $(this).prepend('<p><a href="#" class="toggler">Open</a></p>');
+        $(this).children('div').hide();
+});
+```
+
+**使用事件代理**
+
+```js
+$('a.toggler', '#items').live('click', handlerFx); （jQuery1.7之后弃用）
+$('a.toggler').on('click', '#items', handlerFx); 
 ```
 
 ### 将行为和自定义事件解耦
