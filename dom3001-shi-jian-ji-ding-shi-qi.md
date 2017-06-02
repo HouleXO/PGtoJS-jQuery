@@ -95,7 +95,7 @@ $(elementOrSelect).unbind('event', handlerFx);
 
 ### 利用事件委托
 
-  优先使用时间代理，jQuery模拟了所有的事件冒泡，使所有事件到支持事件冒泡并兼容所有浏览器。
+优先使用时间代理，jQuery模拟了所有的事件冒泡，使所有事件到支持事件冒泡并兼容所有浏览器。
 
 **切换条目内容**
 
@@ -137,11 +137,13 @@ $('#items').on('click', 'a', function(){
 });
 ```
 
+&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;![](/assets/GIF.gif)
+
 **使用事件代理**
 
 ```js
 $('a.toggler', '#items').live('click', handlerFx); （jQuery1.7之后弃用）
-$('a.toggler').on('click', '#items', handlerFx); 
+$('a.toggler').on('click', '#items', handlerFx);
 ```
 
 ### 将行为和自定义事件解耦
