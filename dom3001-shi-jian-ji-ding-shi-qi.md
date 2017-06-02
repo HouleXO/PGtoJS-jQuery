@@ -137,7 +137,7 @@ $('#items').on('click', 'a', function(){
 });
 ```
 
-&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;![](/assets/GIF.gif)
+      ![](/assets/GIF.gif)
 
 **使用事件代理**
 
@@ -150,11 +150,113 @@ $('a.toggler').on('click', '#items', handlerFx);
 
 **监听一个自定义事件**
 
+```js
+// -- 通过多余的参数传入额外的数据
+$(elementOrSelector).bind('event', handlerFx)；
+```
+
 **处罚一个自定义事件**
+
+```js
+$(elements).trigger('event');
+$(elements).trigger('event', { foo: 'bar', baz: 2 });
+$(elements).trigger('event', ['bar', 42]);
+```
 
 ### 模拟后台处理
 
 **调度和停止代码的执行**
 
+```js
+// 利用定时器模拟后台处理需要两个核心方法
+var handle = window.setTimeout(callback, intervalInMs);
+window.clearTimeOut(handle);
+```
+
 **让用户切换后台处理**
+
+```html
+<body>
+    <script src="./libs/jQuery321.js"></script>
+    <h1>Simulating background processing</h1>
+    <!-- START:MAIN -->
+    <p id="progress">
+        <span class="visual"></span>
+        <span class="figure">0%</span>
+    </p>
+    <p>
+    <input type="button" id="btnToggle" value="Toggle" />
+    <input type="button" id="btnOtherTask" value="Do some other stuff" />
+</body>
+```
+
+```css
+#progress {
+            border: 2px solid gray; text-align: center;
+            background: white; color: black; position: relative; width: 30em;
+            font-family: sans-serif;
+        }
+#progress .over50 { color: white; }
+#progress .visual {
+            position: absolute; left: 0; top: 0; height: 100%; width: 0;
+            background: green; z-index: 1;
+        }
+#progress .figure { position: relative; z-index: 2; font-weight: bold; }
+```
+
+```js
+(function() {
+        // START:MAIN
+        var CHUNK_INTERVAL = 25; // ms.
+        var running = false, progress = 0, processTimer;
+
+        function runChunk() {
+            window.clearTimeout(processTimer);
+            processTimer = null;
+            if (!running) return;
+            // Some work chunk.  Let's simulate it:
+            for (var i = 0; i < 10000; i += Math.round(Math.random()*5)){}
+
+            ++progress;
+            updateUI(); // See source archive -- just updates a progressbar
+
+            if (progress < 100) {
+                processTimer = window.setTimeout(runChunk, CHUNK_INTERVAL);
+            } else {
+                progress = 0;
+                running = false;
+            }
+        }
+
+        function toggleProcessing() {
+            running = !running;
+            if (running) {
+                processTimer = window.setTimeout(runChunk, CHUNK_INTERVAL);
+            }
+        }
+        // END:MAIN
+
+        var progressbar, visual, figure;
+
+        function updateUI() {
+            visual.css('width', + progress + '%');
+            progressbar[progress < 50 ? 'removeClass' : 'addClass']('.over50');
+            figure.text(progress + '%');
+        }
+
+        $(document).ready(function(){
+            $('#btnToggle').bind('click', function(){
+                toggleProcessing();
+            });
+            $('#btnOtherTask').bind('click', function() {
+                $('h1').first().append(', yeah');
+            });
+            progressbar = $('#progress');
+            visual = progressbar.children('.visual');
+            figure = progressbar.children('.figure');
+        });
+    })();
+```
+
+&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;![](/assets/GIF1.gif)
 
