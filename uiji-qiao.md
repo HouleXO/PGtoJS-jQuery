@@ -90,13 +90,13 @@ img { border: none; }
 
 效果
 
-   ![](/assets/GIF2.gif)
+&emsp;&emsp;&emsp;![](/assets/GIF2.gif)
 
 ### 创建光箱效果
 
-&emsp;&emsp;通过FancyBox jQuery插件来实现把缩略图放大成原始图片的光箱效果。
+通过FancyBox jQuery插件来实现把缩略图放大成原始图片的光箱效果。
 
-&emsp;&emsp;**参考文章**：[jQuery：改进图像](http://blog.csdn.net/lovejulyer/article/details/72722054)
+**参考文章**：[jQuery：改进图像](http://blog.csdn.net/lovejulyer/article/details/72722054)
 
 ### 实现“无限翻页”
 
@@ -142,13 +142,9 @@ img { border: none; }
 
 **效果**：
 
-![](/assets/GIF3.gif)
+&emsp;&emsp;&emsp;&emsp;![](/assets/GIF3.gif)
 
 ### 在载入内容时保持显示区域
 
-
-
-
-
-
+&emsp;&emsp;保持相对于显示区域的滚动位置。需要获得显示区域的“滚动偏移”，即在当前显示部分上方载入内容前显示区域的滚动位置，然后在载入内容后恢复这个偏移
 
