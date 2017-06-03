@@ -34,7 +34,7 @@
 
 ### 预载入图片
 
-实现预载入功能的HTML代码
+        实现预载入功能的HTML代码
 
 ```html
 <ul id="products">
@@ -49,23 +49,23 @@
 </ul>
 ```
 
-实现预载入功能的JavaScript代码
+        实现预载入功能的JavaScript代码
 
 ```css
 img { border: none; }
-        #products { margin: 0; padding: 0; }
-        #products li {
+#products { margin: 0; padding: 0; }
+#products li {
             list-style-type: none; float: left;
             margin-left: 1em; padding: 0.25em 0.5em; border: 1px solid silver;
             font-family: sans-serif; text-align: center;
         }
-        #products img { display: block; }
-        #products li h2 { font-size: 100%; }
-        #products li a { text-decoration: none; }
-        #products li a span { text-decoration: underline; }
+#products img { display: block; }
+#products li h2 { font-size: 100%; }
+#products li a { text-decoration: none; }
+#products li a span { text-decoration: underline; }
 ```
 
-切换（载入完成的）图片
+        切换（载入完成的）图片
 
 ```js
 (function() {
@@ -90,13 +90,13 @@ img { border: none; }
 
 效果
 
-&emsp;&emsp;&emsp;![](/assets/GIF2.gif)
+   ![](/assets/GIF2.gif)
 
 ### 创建光箱效果
 
-通过FancyBox jQuery插件来实现把缩略图放大成原始图片的光箱效果。
+        通过FancyBox jQuery插件来实现把缩略图放大成原始图片的光箱效果。
 
-**参考文章**：[jQuery：改进图像](http://blog.csdn.net/lovejulyer/article/details/72722054)
+  **     参考文章**：[jQuery：改进图像](http://blog.csdn.net/lovejulyer/article/details/72722054)
 
 ### 实现“无限翻页”
 
@@ -142,9 +142,9 @@ img { border: none; }
 
 **效果**：
 
-&emsp;&emsp;&emsp;&emsp;![](/assets/GIF3.gif)
+    ![](/assets/GIF3.gif)
 
 ### 在载入内容时保持显示区域
 
-&emsp;&emsp;保持相对于显示区域的滚动位置。需要获得显示区域的“滚动偏移”，即在当前显示部分上方载入内容前显示区域的滚动位置，然后在载入内容后恢复这个偏移
+  保持相对于显示区域的滚动位置，需要获得显示区域的“滚动偏移”，即在当前显示部分上方载入内容前显示区域的滚动位置，然后在载入内容后恢复这个偏移。
 
