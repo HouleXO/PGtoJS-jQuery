@@ -90,9 +90,63 @@ img { border: none; }
 
 效果
 
-&emsp;&emsp;&emsp;![](/assets/GIF2.gif)
+   ![](/assets/GIF2.gif)
 
 ### 创建光箱效果
+
+&emsp;&emsp;通过FancyBox jQuery插件来实现把缩略图放大成原始图片的光箱效果。
+
+&emsp;&emsp;**参考文章**：[jQuery：改进图像](http://blog.csdn.net/lovejulyer/article/details/72722054)
+
+### 实现“无限翻页”
+
+```js
+(function() {
+        // START:lowEnough
+        // 判断文档底部离当前显示区域底部距离，跨浏览器兼容
+        function lowEnough() {
+            var pageHeight = Math.max(document.body.scrollHeight,
+                document.body.offsetHeight);
+            var viewportHeight = window.innerHeight ||
+                document.documentElement.clientHeight ||
+                document.body.clientHeight || 0;
+            var scrollHeight = window.pageYOffset ||
+                document.documentElement.scrollTop ||
+                document.body.scrollTop || 0;
+            // Trigger for scrolls within 20 pixels from page bottom
+            return pageHeight - viewportHeight - scrollHeight < 20;
+        }
+        // END:lowEnough
+
+        // START:loop
+        function checkScroll() {
+            if (!lowEnough()) return pollScroll();
+            var spinner = $('#spinner');
+            spinner.show();
+            $.get('more.php', processData);
+            function processData(data, dataStatus){
+                if(dataStatus === "success"){
+                    spinner.before(data);
+                    spinner.hide();
+                    pollScroll();
+                }else{
+                    spinner.prepend('<p>Please try again!</p>');
+                }
+            }
+        }
+        function pollScroll() { setTimeout(checkScroll, 100); }
+        pollScroll();
+        // END:loop
+})();
+```
+
+**效果**：
+
+![](/assets/GIF3.gif)
+
+### 在载入内容时保持显示区域
+
+
 
 
 
