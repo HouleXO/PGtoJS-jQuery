@@ -6,5 +6,5 @@
 * [UI技巧](uiji-qiao.md)
 * [表单技巧](biao-dan-ji-qiao.md)
 * [服务器端技术](fu-wu-qi-duan-ji-zhu.md)
-* 使用混搭
+* [使用混搭](shi-yong-hun-da.md)
 
