@@ -93,17 +93,60 @@ $('document').ready(bindMaxLengthFeedbacks);
 
 ### 同时选择或反选多个ckeckbox
 
+```js
+(function() {
+    // START:main
+    function toggleAllCheckboxes() {
+        $('tbody').find('tr input[type="checkbox"]').each(function(){
+
+                if($(this).attr('checked') === 'checked'){
+                    $(this).attr('checked', false);
+                }else{
+                    $(this).attr('checked', true);
+                }
+        });
+    }
+
+    function checkboxes(){
+        if($(this).attr('checked') === 'checked'){
+            $(this).attr('checked', false);
+        }else{
+            $(this).attr('checked', true);
+        }
+
+    }
+
+    $("document").ready(function(){
+        $("tr input[type='checkbox']").on('click', checkboxes);
+        $('#toggler').on('click', toggleAllCheckboxes);
+    });
+    // END:main
+})();
+```
+
 ### 表单验证：基本技巧
+
+
 
 ### 表单验证：进阶技巧
 
+
+
 ### 表单验证：高级技巧
+
+
 
 ### 在表单中提供动态的帮助tooltip
 
+
+
 ### 自动完成输入
 
+
+
 ### 使用动态多文件上传
+
+
 
 
 
