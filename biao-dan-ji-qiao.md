@@ -19,7 +19,67 @@
 
 ### 提供输入长度反馈
 
+用HTML指定长度
 
+```html
+<h1>提供输入长度反馈</h1>
+<form>
+    <!-- START:main -->
+    <p>
+        <label for="edtDescription">Description</label>
+        <textarea id="edtDescription" name="description" cols="40"
+                  rows="5" class="maxLength100"></textarea>
+    </p>
+    <!-- END:main -->
+</form>
+```
+
+为最大长度域绑定反馈事件
+
+```js
+// START:init
+var current, maxLength, delta;
+
+function bindMaxLengthFeedbacks() {
+    var mlClass, feedback;
+    $("textarea[class^='maxLength']").each(function(){
+
+        var field = $(this);
+        // var type = field[0].tagName.toLowerCase();
+        mlClass = field.attr('class').match(/\bmaxLength(\d+)\b/)[0];
+        maxLength = parseInt(mlClass.replace(/\D+/g, ''), 10);
+        field.maxLength = maxLength;
+        delta = maxLength;
+        field.parent('p').addClass('lengthFeedback');
+        feedback = ('<span class="feedback">Remaining:'+ delta +'</span>');
+        field.after(feedback);
+        // updateFeedback(field);
+
+        field.on('keyup', updateFeedback);
+        field.on('keypress', updateFeedback);
+        field.onchange = field.onkeyup;
+    });
+}
+// END:init
+```
+
+及时给出反馈
+
+```js
+// START:update
+function updateFeedback(){
+   current = $(this)[0].value.length;
+   delta = current < maxLength ? maxLength - current : 0;
+   if (current > maxLength) {
+       $(this)[0].value = $(this)[0].value.substring(0, maxLength);
+       delta = 0;
+   }
+   $(this).next("span").html("Remainning:" + delta );
+}
+// END:update
+
+$('document').ready(bindMaxLengthFeedbacks);
+```
 
 ### 同时选择或反选多个ckeckbox
 
