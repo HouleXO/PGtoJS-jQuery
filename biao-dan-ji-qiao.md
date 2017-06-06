@@ -34,6 +34,16 @@
 </form>
 ```
 
+```css
+label { display: block; }
+p.lengthFeedback { padding-bottom: 1.2em; }
+p.lengthFeedback span.feedback {
+    position: absolute; font-size: 90%;
+    font-family: sans-serif; color: silver; text-align: right;
+    display: block;
+}
+```
+
 为最大长度域绑定反馈事件
 
 ```js
