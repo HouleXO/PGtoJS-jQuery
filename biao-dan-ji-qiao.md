@@ -2,16 +2,14 @@
 
 **jquery如何设置与去除disabled属性？五种方法**
 
-//两种方法设置disabled属性
-
 ```js
+ //两种方法设置disabled属性
  $('#areaSelect').attr("disabled",true);
  $('#areaSelect').attr("disabled","disabled");
 ```
 
-//三种方法移除disabled属性
-
 ```js
+ //三种方法移除disabled属性
  $('#areaSelect').attr("disabled",false);
  $('#areaSelect').removeAttr("disabled");
  $('#areaSelect').attr("disabled","");
@@ -201,14 +199,14 @@ $('document').ready(bindMaxLengthFeedbacks);
 
 **检查特定格式的输入域**
 
-*  正则表达式的创建
+* 正则表达式的创建
 
 ```js
 var checkNum = /^[A-Za-z0-9]+$/;
 var re=new RegExp(“["+s1+"]“,”g”);
 ```
 
-*  常用规则
+* 常用规则
 
 ```js
 /*
@@ -274,7 +272,7 @@ $(function () {
 
 ### 表单验证：高级技巧
 
-
+Ajax表单验证的典型示例是全局唯一的输入域。如实现登名域的检查-假设场景要求用户之间的登录名不能重复。Ajax验证的特点是及时动态UI反馈，比如提示正在检查和提示检查结果，因此HTML标记得要预先留出这些元素的位置。至于触发方式，应对不同的输入域进行不同的选择。是在输入同时检查（）
 
 ### 在表单中提供动态的帮助tooltip
 
