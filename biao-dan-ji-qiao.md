@@ -199,7 +199,82 @@ $('document').ready(bindMaxLengthFeedbacks);
 
 ### 表单验证：进阶技巧
 
+**检查特定格式的输入域**
+
+*  正则表达式的创建
+
+```js
+var checkNum = /^[A-Za-z0-9]+$/;
+var re=new RegExp(“["+s1+"]“,”g”);
+```
+
+*  常用规则
+
+```js
+/*
+ * a) 用户密码：/^[a-zA-Z][a-zA-Z0-9_]{5,20}$/
+ * b) 邮件:/^[\w-]+(\.[\w-]+)*@[\w-]+(\.[\w-]+)+$/
+ * c) 手机:/^[\d]{5,20}$/
+ * d) 其它常用验证:请百度
+ */
+```
+
+* 方式：test
+
+```html
+<form action="">
+  <label>用户名：</label><span id="check_username">检测</span>
+  <input type="text" id="t_username" placeholder="请输入"/>
+  <hr/>
+  <label>邮箱：</label><span id="check_email">检测</span>
+  <input type="text" id="t_email" placeholder="请输入"/>
+  <hr/>
+  <label>手机：</label><span id="check_phone">检测</span>
+  <input type="text" id="t_phone" placeholder="请输入"/>
+  <hr/>
+</form>
+```
+
+```js
+$(function () {
+  var FIELD_PATTERNS = {
+      username: /^[a-zA-Z][a-zA-Z0-9_]{5,20}$/,
+      email: /^[a-zA-Z][a-zA-Z0-9_]{5,20}$/,
+      phone: /^[\d]{5,20}$/
+  };  
+  // 用户名
+  $("#check_username").click(function(){
+    var str = $("#t_username").val();
+    if(FIELD_PATTERNS.username.test(str)){
+      // todo 
+    }else{
+      // todo 
+    }
+  });
+  // 邮件
+  $("#check_email").click(function(){
+    var str = $("#t_email").val();
+    if(FIELD_PATTERNS.email.test(str)){
+      // todo 
+    }else{
+      // todo 
+    }
+  });
+  // 手机
+  $("#check_phone").click(function(){
+    var str = $("#t_phone").val();
+    if(FIELD_PATTERNS.phone.test(str)){
+      // todo 
+    }else{
+      // todo 
+    }
+  });
+});
+```
+
 ### 表单验证：高级技巧
+
+
 
 ### 在表单中提供动态的帮助tooltip
 
