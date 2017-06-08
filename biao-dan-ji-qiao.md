@@ -126,27 +126,86 @@ $('document').ready(bindMaxLengthFeedbacks);
 
 ### 表单验证：基本技巧
 
+**必填输入项**
 
+使用required这个CSS class属性标记这种输入区域，之后设置样式来给未填的必填输入项提供视觉反馈。
+
+首先要截取到表单的submit事件，一旦挂上submit事件，就只需要获取表单中所有标记为required的元素，然后检测他们是否为非空值。
+
+```js
+<h1>必填输入项</h1>
+<!-- START:main -->
+<form id="registration">
+    <p>
+        <label for="user_first_name">First name*</label>
+        <input type="text" name="user[first_name]" id="user_first_name"
+               class="required text" />
+    </p>
+    <p>
+        <label for="user_last_name">Last name*</label>
+        <input type="text" name="user[last_name]" id="user_last_name"
+               class="required text" />
+    </p>
+    <p>
+        <label for="user_nickname">Nickname</label>
+        <input type="text" name="user[nickname]" id="user_nickname" />
+    </p>
+    <p class="radios">
+        <input type="checkbox" id="terms" name="terms" value="yes"
+               class="required" />
+        <label for="terms">I accept the terms of service*</label>
+    </p>
+    <p><input type="submit" value="Sign me up!" /></p>
+</form>
+<!-- END:main -->
+```
+
+```css
+#registration { font-family: sans-serif; }
+#registration p { margin: 0 0 0.5em; }
+#registration label { display: inline-block; width: 6em; }
+#registration .radios { padding-left: 6.2em; }
+#registration .radios label { width: auto; }
+#registration p.missing { color: maroon; }
+#registration p.missing label { font-weight: bold; }
+#registration p.missing input.text,
+#registration p.missing textarea { border: 1px solid maroon; background: #fdd; }
+```
+
+```js
+(function() {
+    // START:main
+    function checkForm(evt) {
+        var value;
+            $('.required').each(function() {
+            value = $(this)[0].value;
+            console.log("@@@@@@" + value);
+            if (value) {
+                $(this).parent('p').removeClass('missing');
+            } else {
+                $(this).parent('p').addClass('missing');
+                $(this).focus();
+                evt.preventDefault();
+            }
+        });
+    }
+
+    $('document').ready(function() {
+        $('#registration').bind('submit', checkForm);
+    });
+    // END:main
+})();
+```
 
 ### 表单验证：进阶技巧
 
-
-
 ### 表单验证：高级技巧
-
-
 
 ### 在表单中提供动态的帮助tooltip
 
-
-
 ### 自动完成输入
 
-
-
 ### 使用动态多文件上传
-
-
 
 
 
